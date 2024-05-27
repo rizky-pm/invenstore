@@ -1,4 +1,4 @@
-function App() {
+const Home = () => {
   return (
     <main>
       <h1 className='text-4xl font-bold'>Invenstore</h1>
@@ -10,6 +10,6 @@ function App() {
       </p>
     </main>
   );
-}
+};
 
-export default App;
+export default Home;

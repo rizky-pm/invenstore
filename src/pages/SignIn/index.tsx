@@ -1,7 +1,9 @@
-function App() {
+import React from 'react';
+
+const SignIn = () => {
   return (
     <main>
-      <h1 className='text-4xl font-bold'>Invenstore</h1>
+      <h1 className='text-4xl font-bold'>Sign In</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
         similique repellendus cum voluptate cumque vitae voluptas exercitationem
@@ -10,6 +12,6 @@ function App() {
       </p>
     </main>
   );
-}
+};
 
-export default App;
+export default SignIn;

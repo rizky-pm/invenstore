@@ -1,7 +1,7 @@
-function App() {
+const About = () => {
   return (
     <main>
-      <h1 className='text-4xl font-bold'>Invenstore</h1>
+      <h1 className='text-4xl font-bold'>About Invenstore</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
         similique repellendus cum voluptate cumque vitae voluptas exercitationem
@@ -10,6 +10,6 @@ function App() {
       </p>
     </main>
   );
-}
+};
 
-export default App;
+export default About;
