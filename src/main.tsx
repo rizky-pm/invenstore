@@ -4,9 +4,12 @@ import { RouterProvider } from 'react-router-dom';
 
 import './index.css';
 import router from './routes/index.tsx';
+import MaxWidthWrapper from './components/MaxWidthWrapper.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <MaxWidthWrapper>
+      <RouterProvider router={router} />
+    </MaxWidthWrapper>
   </React.StrictMode>
 );
