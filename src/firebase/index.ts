@@ -29,4 +29,4 @@ if (window.location.hostname === 'localhost') {
   connectFirestoreEmulator(firebaseFirestore, '127.0.0.1', 8080);
 }
 
-export default firebaseApp;
+export { firebaseAuth, firebaseDb, firebaseFirestore };
