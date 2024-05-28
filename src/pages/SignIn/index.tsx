@@ -1,45 +1,59 @@
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  setPersistence,
+  browserSessionPersistence,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import { firebaseAuth } from '@/firebase';
 import googleAuthProvider from '@/firebase/googelAuthProvider';
+import { useNavigate, useLocation, useLoaderData } from 'react-router-dom';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
 const SignIn = () => {
+  const navigate = useNavigate();
+  const loaderData = useLoaderData();
+  const { pathname } = useLocation();
+  console.log(loaderData);
+
   const handleSignInWithGoogle = () => {
-    signInWithPopup(firebaseAuth, googleAuthProvider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
+    setPersistence(firebaseAuth, browserSessionPersistence).then(() => {
+      return signInWithPopup(firebaseAuth, googleAuthProvider)
+        .then((result) => {
+          const user = result.user;
+          if (user) {
+            navigate('/', { replace: true });
+          }
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const email = error.customData.email;
+          const credential = GoogleAuthProvider.credentialFromError(error);
 
-        if (credential) {
-          const token = credential.accessToken;
-          console.log(token);
-        }
-
-        // The signed-in user info.
-        const user = result.user;
-        console.log(user);
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-
-        console.error(errorCode);
-        console.error(errorMessage);
-        console.error(email);
-        console.error(credential);
-      });
+          console.error(errorCode);
+          console.error(errorMessage);
+          console.error(email);
+          console.error(credential);
+        });
+    });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+      if (user && pathname === '/sign-in') {
+        navigate('/', { replace: true });
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate, pathname]);
 
   return (
     <main className='relative h-screen'>
@@ -65,6 +79,7 @@ const SignIn = () => {
             Sign In With Google
           </Button>
         </form>
+        <Link to={'/'}>Home</Link>
       </div>
     </main>
   );
