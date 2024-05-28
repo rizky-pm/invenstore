@@ -1,7 +1,6 @@
 import { signOut } from 'firebase/auth';
 import { firebaseAuth } from '@/firebase';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const handleSignOut = () => {
@@ -24,7 +23,6 @@ const Home = () => {
       <Button variant={'destructive'} onClick={handleSignOut}>
         Sign Out
       </Button>
-      <Link to={'/sign-in'}>Sign In</Link>
     </main>
   );
 };

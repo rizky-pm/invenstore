@@ -13,7 +13,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const SignIn = () => {
@@ -79,7 +78,6 @@ const SignIn = () => {
             Sign In With Google
           </Button>
         </form>
-        <Link to={'/'}>Home</Link>
       </div>
     </main>
   );
