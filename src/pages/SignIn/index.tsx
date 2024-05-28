@@ -12,6 +12,7 @@ import { useNavigate, useLocation, useLoaderData } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 import { useEffect } from 'react';
 
@@ -55,7 +56,7 @@ const SignIn = () => {
   }, [navigate, pathname]);
 
   return (
-    <main className='relative h-screen'>
+    <MaxWidthWrapper className='relative h-screen'>
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col w-1/3 p-8 rounded-md'>
         <h1 className='text-4xl font-black tracking-widest'>INVENSTORE</h1>
         <p>Sign in to continue</p>
@@ -79,7 +80,7 @@ const SignIn = () => {
           </Button>
         </form>
       </div>
-    </main>
+    </MaxWidthWrapper>
   );
 };
 
