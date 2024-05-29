@@ -1,16 +1,4 @@
-import { signOut } from 'firebase/auth';
-import { firebaseAuth } from '@/firebase';
-import { Button } from '@/components/ui/button';
-
 const Home = () => {
-  const handleSignOut = () => {
-    signOut(firebaseAuth)
-      .then()
-      .catch(() => {
-        console.log('Failed');
-      });
-  };
-
   return (
     <main className='p-6 ml-[15%]'>
       <h1 className='text-4xl font-bold'>Invenstore</h1>
@@ -20,10 +8,6 @@ const Home = () => {
         maxime fuga placeat. Vitae quam quisquam fugiat harum quae quo unde nam.
         Corporis?
       </p>
-
-      <Button variant={'destructive'} onClick={handleSignOut}>
-        Sign Out
-      </Button>
     </main>
   );
 };
